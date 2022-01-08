@@ -1,2 +1,7 @@
 <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
 <h1>Hello <%= current_user.email %></h1>
+
+<div>
+  <%=button_to 'Reset', edit_user_registration_path, method: 'get' %>
+  <p>Password<p>
+</div>

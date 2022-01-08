@@ -3,7 +3,6 @@ Rails.application.routes.draw do
              controllers: {
                registrations: 'registrations',
                sessions: 'sessions',
-               passwords: 'passwords',
              }
   devise_scope :user do
     get '/users/magic_link', to: 'devise/passwordless/magic_links#show', as: 'users_magic_link'
