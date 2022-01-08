@@ -1,1 +1,16 @@
 <h1>Hello World</h1>
+
+<% if !current_user %>
+  <%= form_with url: create_magic_link_path, method: :post do |f| %>
+      <div>
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+    
+      <div>
+        <%= f.submit "Send Magic Link" %>
+      </div>
+    <% end %>
+
+  <%= button_to 'Login with Password', new_user_session_path, method: :get %>
+<% end %>
