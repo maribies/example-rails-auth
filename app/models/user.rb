@@ -9,7 +9,7 @@ class User < ApplicationRecord
          :trackable,
          :magic_link_authenticatable
 
-  before_validation :username_already_exists?
+  # before_validation :username_already_exists?
   before_create :add_random_username
 
   def password_required?
@@ -31,9 +31,7 @@ class User < ApplicationRecord
   end
 
   def username_already_exists?
-    return if username == self.username
-    raise 'Username already exists' if unique_username_present? && user_by_username(username)
-    self.username = username
+    username.present? && user_by_username(username)
   end
 
   def user_by_username(username)
@@ -42,6 +40,7 @@ class User < ApplicationRecord
 
   def add_random_username
     return if unique_username_present?
+    raise 'Username already exists' if username_already_exists?
     random_username = generate_username
     random_username = generate_username while user_by_username(random_username)
 
